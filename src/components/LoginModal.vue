@@ -1,14 +1,24 @@
 <script setup>
+import { ref } from 'vue'
 import ModalBase from './lib/ModalBase.vue'
 const emit = defineEmits(['cancel', 'submit'])
+
+const usernameRef = ref()
+const passwordRef = ref()
+
+function onSubmit() {
+    const username = usernameRef.value.value
+    const password = passwordRef.value.value
+    emit('submit', username, password)
+}
 </script>
 
 <template>
     <ModalBase>
         <div class="modal">
-            <input type="text" placeholder="username" />
-            <input type="text" placeholder="password" />
-            <button @click="emit('submit')">submit</button>
+            <input ref="usernameRef" type="text" placeholder="username" />
+            <input ref="passwordRef" type="text" placeholder="password" />
+            <button @click="onSubmit()">submit</button>
             <button @click="emit('cancel')">cancel</button>
         </div>
     </ModalBase>

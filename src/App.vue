@@ -7,6 +7,11 @@ let modals = ref({
     confirm: false,
     login: false,
 })
+
+function login(username, password) {
+    console.log(`login username=${username}, password=${password}`)
+    modals.value.login = false
+}
 </script>
 
 <template>
@@ -21,7 +26,7 @@ let modals = ref({
     <LoginModal
         :prop_visible="modals.login"
         @cancel="modals.login = false"
-        @submit="modals.login = false"
+        @submit="login"
     />
 </template>
 
